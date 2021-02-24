@@ -30,7 +30,7 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 {
 	int nPass = 0;
 
-	printf("\n%s 차례입니다.\n", BG->getColor() == 1 ? "●백돌" : "○흑돌");
+	printf("\n%s 차례입니다.\n", BG->getColor() == WHITE ? "●백돌" : "○흑돌");
 
 	while (true) {
 		if (BG->passCheck() == false) {
@@ -39,9 +39,9 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 				a_bWinCheck = BG->countStone();
 				break;
 			}
-			printf("%s돌을 둘 자리가 없어 패스되었습니다.\n", BG->getColor() == 1 ? "●백" : "○흑");
+			printf("%s돌을 둘 자리가 없어 패스되었습니다.\n", BG->getColor() == WHITE ? "●백" : "○흑");
 			BG->setColor(BG->getColor() * -1);
-			printf("\n%s 차례입니다.\n", BG->getColor() == 1 ? "●백돌" : "○흑돌");
+			printf("\n%s 차례입니다.\n", BG->getColor() == WHITE ? "●백돌" : "○흑돌");
 			continue;
 		}
 		printf("Input Position: ");
@@ -62,5 +62,5 @@ void CBoardGameHandler::gameResult()
 		if (BG->getWhite() == BG->getBlack()) printf("무승부");
 		else printf("%s이 승리하였습니다.", BG->getWhite() > BG->getBlack() ? "●백" : "○흑");
 	}
-	else printf("%s이 승리하였습니다.", BG->getColor() == -1 ? "●백" : "○흑");
+	else printf("%s이 승리하였습니다.", BG->getColor() == BLACK ? "●백" : "○흑");
 }

@@ -18,6 +18,10 @@ private:
 		Omok = 1,
 		Othello
 	};
+	enum {
+		WHITE = 1,
+		BLACK = -1
+	};
 
 public:
 	CPrintBoardGame* selectGame();
