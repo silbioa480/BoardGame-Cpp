@@ -1,5 +1,6 @@
 #ifndef __C_OTHELLO_H__
 #define __C_OTHELLO_H__
+#define OTHELLO_SIZE 8
 #include "CBoardGame.h"
 #include <vector>
 using namespace std;

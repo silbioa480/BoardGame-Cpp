@@ -1,5 +1,6 @@
 #ifndef __C_OMOK_H__
 #define __C_OMOK_H__
+#define OMOK_SIZE 16
 #include "CBoardGame.h"
 
 class COmok : public CBoardGame

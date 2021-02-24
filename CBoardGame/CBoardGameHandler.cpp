@@ -7,14 +7,14 @@ CPrintBoardGame* CBoardGameHandler::selectGame()
 		scanf_s("%d", &m_nGame);
 
 		if (m_nGame == Omok) {
-			COmok* OM = new COmok(16);
+			COmok* OM = new COmok(OMOK_SIZE);
 			BG = OM;
 			CPrintNarrow* PN = new CPrintNarrow(BG->getBoard(), BG->getSize());
 			PG = PN;
 			break;
 		}
 		else if (m_nGame == Othello) {
-			COthello* OTH = new COthello(8);
+			COthello* OTH = new COthello(OTHELLO_SIZE);
 			BG = OTH;
 			CPrintWide* PW = new CPrintWide(BG->getBoard(), BG->getSize());
 			PG = PW;
