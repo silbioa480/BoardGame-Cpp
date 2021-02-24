@@ -56,13 +56,3 @@ bool CBoardGame::isInvalidPosition(char _y, char _x, int len)
 
 	return true;
 }
-
-bool CBoardGame::countStone()
-{
-	return false;
-}
-
-bool CBoardGame::passCheck()
-{
-	return true;
-}
