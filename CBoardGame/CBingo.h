@@ -10,6 +10,8 @@ class CBingo : public CBoardGame
 {
 private:
 	int m_nArrRandmNumber[25] = { 0, };
+	int m_nBingoLineA = 0;
+	int m_nBingoLineB = 0;
 
 public:
 	CBingo(int a_nRowSize, int a_nColSize) : CBoardGame(a_nRowSize, a_nColSize) 
@@ -25,9 +27,9 @@ public:
 	virtual bool countStone();
 	virtual bool passCheck();
 
-	int findNumber(int);
-	void makeRandomNumber();
+	void findNumber(int);
 	void resetRandomNumber();
+	void makeRandomNumber();
 	void setRandomNumberBoard(int, int);
 };
 #endif

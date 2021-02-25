@@ -139,19 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CBingo.cpp" />
     <ClCompile Include="CBoardGame.cpp" />
     <ClCompile Include="CBoardGameHandler.cpp" />
     <ClCompile Include="COmok.cpp" />
     <ClCompile Include="COthello.cpp" />
+    <ClCompile Include="CPrintBingo.cpp" />
     <ClCompile Include="CPrintNarrow.cpp" />
     <ClCompile Include="CPrintWide.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CBingo.h" />
     <ClInclude Include="CBoardGame.h" />
     <ClInclude Include="CBoardGameHandler.h" />
     <ClInclude Include="COmok.h" />
     <ClInclude Include="COthello.h" />
+    <ClInclude Include="CPrintBingo.h" />
     <ClInclude Include="CPrintBoardGame.h" />
     <ClInclude Include="CPrintNarrow.h" />
     <ClInclude Include="CPrintWide.h" />

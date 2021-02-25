@@ -37,9 +37,10 @@ bool COthello::check(int _r, int _c, int dir)
 
 bool COthello::isInvalidPosition(char _y, char _x, int len)
 {
-	m_reverseStone.clear();
 	if (CBoardGame::isInvalidPosition(_y, _x, len) == true && getPos() == true) return true;
-	else return false;
+	m_reverseStone.clear();
+	setPos(canStone(getR(), getC()));
+	return false;
 }
 
 bool COthello::countStone()

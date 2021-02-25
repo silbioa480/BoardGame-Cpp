@@ -11,6 +11,7 @@ private:
 	int m_nColor = 1;
 	int r = 0, c = 0;
 	int m_nWhite = 0, m_nBlack = 0;
+	int m_nBingoLine[2] = { 0, };
 	bool m_bPos = false;
 
 public:
@@ -39,11 +40,18 @@ public:
 	int getColSize() { return m_nColSize; }
 
 	bool getPos() { return m_bPos; }
+	void setPos(bool a_bPos) { m_bPos = a_bPos; }
+
+	int getR() { return r; }
+	int getC() { return c; }
 
 	int getWhite() { return m_nWhite; }
 	void setWhite(int a_nWhite) { m_nWhite = a_nWhite; }
 	int getBlack() { return m_nBlack; }
 	void setBlack(int a_nBlack) { m_nBlack = a_nBlack; }
+
+	int getBingoLine(int _player) { return m_nBingoLine[_player]; }
+	void setBingoLine(int _player, int _line) { m_nBingoLine[_player] = _line; }
 
 	int** getBoard() { return dat; }
 

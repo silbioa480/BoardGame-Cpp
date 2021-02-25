@@ -3,7 +3,7 @@
 CPrintBoardGame* CBoardGameHandler::selectGame()
 {
 	while (true) {
-		printf("select game : 1) omok, 2) othello\n");
+		printf("select game : 1) omok, 2) othello 3) bingo\n");
 		scanf_s("%d", &m_nGame);
 
 		if (m_nGame == Omok) {
@@ -36,7 +36,7 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 {
 	int nPass = 0;
 
-	printf("\n%s 차례입니다.\n", BG->getColor() == WHITE ? "●백돌" : "○흑돌");
+	printf("\n%s 차례입니다.\n", BG->getColor() == WHITE ? PG->m_sPlayer[0] : PG->m_sPlayer[1]);
 
 	while (true) {
 		if (BG->passCheck() == false) {
@@ -45,9 +45,9 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 				a_bWinCheck = BG->countStone();
 				break;
 			}
-			printf("%s돌을 둘 자리가 없어 패스되었습니다.\n", BG->getColor() == WHITE ? "●백" : "○흑");
+			printf("%s돌을 둘 자리가 없어 패스되었습니다.\n", ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
 			BG->setColor(BG->getColor() * -1);
-			printf("\n%s 차례입니다.\n", BG->getColor() == WHITE ? "●백돌" : "○흑돌");
+			printf("\n%s 차례입니다.\n", ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
 			continue;
 		}
 		printf("Input Position: ");
@@ -64,9 +64,13 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 void CBoardGameHandler::gameResult()
 {
 	if (m_nGame == Othello) {
-		printf("●백: %d  ○흑: %d\n", BG->getWhite(), BG->getBlack());
+		printf("%s: %d  %s: %d\n", PG->m_sPlayer[0], BG->getWhite(), PG->m_sPlayer[1], BG->getBlack());
 		if (BG->getWhite() == BG->getBlack()) printf("무승부");
-		else printf("%s이 승리하였습니다.", BG->getWhite() > BG->getBlack() ? "●백" : "○흑");
+		else printf("%s이 승리하였습니다.", ((BG->getWhite() > BG->getBlack()) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
 	}
-	else printf("%s이 승리하였습니다.", BG->getColor() == BLACK ? "●백" : "○흑");
+	else if (m_nGame == Bingo) {
+		if (BG->getBingoLine(0) == BG->getBingoLine(1)) printf("무승부");
+		else printf("%s가 승리하였습니다.", ((BG->getBingoLine(0) > BG->getBingoLine(1)) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
+	}
+	else printf("%s이 승리하였습니다.", ((BG->getColor() == BLACK) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
 }

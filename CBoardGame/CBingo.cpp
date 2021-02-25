@@ -1,13 +1,40 @@
 #include "CBingo.h"
 
-bool CBingo::isBreak(int, int, int, int&, bool&)
+bool CBingo::isBreak(int _r, int _c, int dir, int& cnt, bool& res)
 {
-	return false;
+	if (CBoardGame::isBreak(_r, _c, dir, cnt, res)) return true;
+	if (getData(_r, _c) == -1) {
+		cnt++;
+		return false;
+	}
+	return true;
 }
 
-bool CBingo::check(int, int, int)
+bool CBingo::check(int _r, int _c, int dir)
 {
-	return false;
+	bool res = false;
+	int cntA = 0;
+
+	for (int y = _r, x = _c;
+		(0 <= y && y < getRowSize()) && (0 <= x && x < 5);
+		y += m_nARR_EIGHT_DIR[dir][0], x += m_nARR_EIGHT_DIR[dir][1])
+	{
+		if (y == _r && x == _c) continue;
+		if (isBreak(y, x, dir, cntA, res)) break;
+		if (cntA == 4) m_nBingoLineA++;
+	}
+
+	int cntB = 0;
+	for (int y = _r, x = _c;
+		(0 <= y && y < getRowSize()) && (5 <= x && x < 10);
+		y += m_nARR_EIGHT_DIR[dir][0], x += m_nARR_EIGHT_DIR[dir][1])
+	{
+		if (y == _r && x == _c) continue;
+		if (isBreak(y, x, dir, cntB, res)) break;
+		if (cntB == 4) m_nBingoLineB++;
+	}
+
+	return res;
 }
 
 void CBingo::putStone()
@@ -30,13 +57,18 @@ bool CBingo::isInvalidPosition(char _y, char _x, int len)
 	if (num > 24 || num < 0) return false;
 
 	findNumber(num);
+	canStone(getR(), getC());
 	
 	return true;
 }
 
 bool CBingo::countStone()
 {
-	return false;
+	if (m_nBingoLineA >= 5 || m_nBingoLineB >= 5) {
+		setBingoLine(0, m_nBingoLineA);
+		setBingoLine(1, m_nBingoLineB);
+		return true;
+	}
 }
 
 bool CBingo::passCheck()
@@ -44,7 +76,7 @@ bool CBingo::passCheck()
 	return false;
 }
 
-int CBingo::findNumber(int a_num)
+void CBingo::findNumber(int a_num)
 {
 	int cnt = 0;
 	for (int i = 0; i < getRowSize(); i++) {

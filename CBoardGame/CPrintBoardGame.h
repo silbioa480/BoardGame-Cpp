@@ -29,6 +29,7 @@ public:
 		"¦§", "¦«", "¦©",
 		"¦¦", "¦ª", "¦¥"
 	};
-	const string m_sSTONE[3] = { "¡Û", "", "¡Ü" };
+	string m_sSTONE[3] = { "¡Û", "", "¡Ü" };
+	string m_sPlayer[2] = { "¡Ü¹é", "¡ÛÈæ"};
 };
 #endif
