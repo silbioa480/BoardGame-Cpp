@@ -12,7 +12,7 @@ private:
 	virtual string getLine(string, int, int);
 
 public:
-	CPrintNarrow(int** a_dat, int a_nSize) : CPrintBoardGame(a_dat, a_nSize) {};
+	CPrintNarrow(int** a_dat, int a_nRowSize, int a_nColSize) : CPrintBoardGame(a_dat, a_nRowSize, a_nColSize) {};
 
 	virtual void printBoard();
 };

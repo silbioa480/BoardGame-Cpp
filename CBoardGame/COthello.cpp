@@ -21,8 +21,12 @@ bool COthello::check(int _r, int _c, int dir)
 	bool res = false;
 	int cnt = 0;
 
-	for (int i = 1; i < getSize() - 1; i++) {
-		if (isBreak(_r + (i * m_nARR_EIGHT_DIR[dir][0]), _c + (i * m_nARR_EIGHT_DIR[dir][1]), dir, cnt, res)) break;
+	for (int y = _r, x = _c;
+		(0 <= y && y < getRowSize()) && (0 <= x && x < getColSize());
+		y += m_nARR_EIGHT_DIR[dir][0], x += m_nARR_EIGHT_DIR[dir][1])
+	{
+		if (y == _r && x == _c) continue;
+		if (isBreak(y, x, dir, cnt, res)) break;
 	}
 	if (res == false && cnt != 0) {
 		for (int j = 0; j < cnt; j++) m_reverseStone.pop_back();
@@ -40,8 +44,8 @@ bool COthello::isInvalidPosition(char _y, char _x, int len)
 
 bool COthello::countStone()
 {
-	for (int i = 0; i < getSize(); i++) {
-		for (int j = 0; j < getSize(); j++) {
+	for (int i = 0; i < getRowSize(); i++) {
+		for (int j = 0; j < getColSize(); j++) {
 			if (getData(i, j) == 1) CBoardGame::setWhite(getWhite() + 1);
 			else if (getData(i, j) == -1) CBoardGame::setBlack(getBlack() + 1);
 		}
@@ -53,8 +57,8 @@ bool COthello::passCheck()
 {
 	int cnt = 0;
 
-	for (int i = 0; i < getSize(); i++) {
-		for (int j = 0; j < getSize(); j++) {
+	for (int i = 0; i < getRowSize(); i++) {
+		for (int j = 0; j < getColSize(); j++) {
 			if (getData(i, j) == 0) {
 				if (canStone(i, j)) cnt++;
 			}

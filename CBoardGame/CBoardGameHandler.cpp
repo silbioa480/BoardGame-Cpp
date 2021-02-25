@@ -7,18 +7,24 @@ CPrintBoardGame* CBoardGameHandler::selectGame()
 		scanf_s("%d", &m_nGame);
 
 		if (m_nGame == Omok) {
-			COmok* OM = new COmok(OMOK_SIZE);
+			COmok* OM = new COmok(OMOK_SIZE, OMOK_SIZE);
 			BG = OM;
-			CPrintNarrow* PN = new CPrintNarrow(BG->getBoard(), BG->getSize());
+			CPrintNarrow* PN = new CPrintNarrow(BG->getBoard(), BG->getRowSize(), BG->getColSize());
 			PG = PN;
 			break;
 		}
 		else if (m_nGame == Othello) {
-			COthello* OTH = new COthello(OTHELLO_SIZE);
+			COthello* OTH = new COthello(OTHELLO_SIZE, OTHELLO_SIZE);
 			BG = OTH;
-			CPrintWide* PW = new CPrintWide(BG->getBoard(), BG->getSize());
+			CPrintWide* PW = new CPrintWide(BG->getBoard(), BG->getRowSize(), BG->getColSize());
 			PG = PW;
 			break;
+		}
+		else if (m_nGame == Bingo) {
+			CBingo* BINGO = new CBingo(BINGO_ROW_SIZE, BINGO_COL_SIZE);
+			BG = BINGO;
+			CPrintBingo* PBINGO = new CPrintBingo(BG->getBoard(), BG->getRowSize(), BG->getColSize());
+			PG = PBINGO;
 		}
 		else printf("잘못된 값입니다.\n\n");
 	}

@@ -19,10 +19,10 @@ void CPrintNarrow::printLine(int si, int _r)
     cout << getLine(s, _r, 0);
 
     s = m_sLINE[si + 1];
-    for (int i = 1; i <= getSize() - 2; i++) cout << getLine(s, _r, i);
+    for (int i = 1; i <= getColSize() - 2; i++) cout << getLine(s, _r, i);
 
     s = m_sLINE[si + 2];
-    cout << getLine(s, _r, getSize() - 1);
+    cout << getLine(s, _r, getColSize() - 1);
     printUIRight(_r);
 }
 
@@ -43,9 +43,9 @@ void CPrintNarrow::printBoard()
 
     printLine(2, 0);
 
-    for (int m_sLINE = 1; m_sLINE < getSize() - 1; m_sLINE++)
+    for (int m_sLINE = 1; m_sLINE < getRowSize() - 1; m_sLINE++)
     {
         printLine(5, m_sLINE);
     }
-    printLine(8, getSize() - 1);
+    printLine(8, getRowSize() - 1);
 }

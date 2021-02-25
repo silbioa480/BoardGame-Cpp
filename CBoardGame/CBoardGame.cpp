@@ -2,7 +2,7 @@
 
 bool CBoardGame::isBreak(int _r, int _c, int dir, int& cnt, bool& res)
 {
-    if (_r >= m_nSize || _c >= m_nSize || _r < 0 || _c < 0) return true;
+    if (_r >= m_nRowSize || _c >= m_nColSize || _r < 0 || _c < 0) return true;
     if (dat[_r][_c] == 0) return true;
 
     return false;
@@ -13,9 +13,14 @@ bool CBoardGame::check(int _r, int _c, int dir)
 	bool res = false;
 	int cnt = 0;
 
-	for (int i = 1; i < m_nSize - 1; i++) {
-		if (isBreak(_r + (i * m_nARR_EIGHT_DIR[dir][0]), _c + (i * m_nARR_EIGHT_DIR[dir][1]), dir, cnt, res)) break;
+	for (int y = _r, x = _c;
+		(0 <= y && y < m_nRowSize) && (0 <= x && x < m_nColSize);
+		y += m_nARR_EIGHT_DIR[dir][0], x += m_nARR_EIGHT_DIR[dir][1])
+	{
+		if (y == _r && x == _c) continue;
+		if (isBreak(y, x, dir, cnt, res)) break;
 	}
+
 	return res;
 }
 
@@ -33,7 +38,7 @@ bool CBoardGame::canStone(int _r, int _c)
 void CBoardGame::putStone()
 {
 	dat[r][c] = m_nColor;
-	m_nColor *= -1;
+	changeColor();
 }
 
 bool CBoardGame::isInvalidPosition(char _y, char _x, int len)
@@ -48,7 +53,7 @@ bool CBoardGame::isInvalidPosition(char _y, char _x, int len)
 	else if (_x >= '0' && _x <= '9') c = _x - '0';
 	else return false;
 
-	if (r >= m_nSize || c >= m_nSize || r < 0 || c < 0) return false;
+	if (r >= m_nRowSize || c >= m_nColSize || r < 0 || c < 0) return false;
 
 	if (dat[r][c] != 0) return false;
 

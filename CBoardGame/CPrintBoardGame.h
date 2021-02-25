@@ -7,7 +7,7 @@ class CPrintBoardGame
 {
 private:
 	int** dat;
-	int m_nSize;
+	int m_nRowSize = 0, m_nColSize = 0;
 
 	virtual void printUITop() = 0;
 	virtual void printUIRight(int) = 0;
@@ -16,11 +16,12 @@ private:
 	virtual string getLine(string, int, int) = 0;
 
 public:
-	CPrintBoardGame(int** a_dat, int a_nSize) : dat(a_dat), m_nSize(a_nSize) {}
+	CPrintBoardGame(int** a_dat, int a_nRowSize, int a_nColSize) : dat(a_dat), m_nRowSize(a_nRowSize), m_nColSize(a_nColSize) {}
 	virtual void printBoard() = 0;
 
 	int getData(int _r, int _c) { return dat[_r][_c]; }
-	int getSize() { return m_nSize; }
+	int getRowSize() { return m_nRowSize; }
+	int getColSize() { return m_nColSize; }
 
 	const string m_sLINE[11] = {
 		"¦¡", "¦¢",

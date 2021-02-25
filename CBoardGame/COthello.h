@@ -11,13 +11,13 @@ private:
 	vector<pair<int, int>> m_reverseStone;
 
 public:
-	COthello(int a_nSize) : CBoardGame(a_nSize) 
+	COthello(int a_nRowSize, int a_nColSize) : CBoardGame(a_nRowSize, a_nColSize) 
 	{
 		setData(3, 3, -1);
 		setData(3, 4, 1);
 		setData(4, 3, 1);
 		setData(4, 4, -1);
-	};
+	}
 
 	virtual bool isBreak(int, int, int, int&, bool&);
 	virtual bool check(int, int, int);

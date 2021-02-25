@@ -1,28 +1,30 @@
 
 #ifndef __C_BOARD_GAME_H__
 #define __C_BOARD_GAME_H__
+using namespace std;
 
 class CBoardGame
 {
 private:
 	int** dat = 0;
-	int m_nSize = 0;
+	int m_nRowSize = 0, m_nColSize = 0;
 	int m_nColor = 1;
 	int r = 0, c = 0;
 	int m_nWhite = 0, m_nBlack = 0;
 	bool m_bPos = false;
 
 public:
-	CBoardGame(int a_size) : m_nSize(a_size)
+	CBoardGame(int a_nRowSize, int a_nColSize) : m_nRowSize(a_nRowSize), m_nColSize(a_nColSize)
 	{
-		dat = (int**) new int* [m_nSize];
-		for (int r = 0; r < m_nSize; r++) dat[r] = (int*) new int[m_nSize] {};
+		dat = (int**) new int* [m_nRowSize];
+		for (int r = 0; r < m_nRowSize; r++) dat[r] = (int*) new int[m_nColSize] {};
 	}
 
 	virtual bool isBreak(int, int, int, int&, bool&);
 	virtual bool check(int, int, int);
 	bool canStone(int, int);
 	virtual void putStone();
+	void changeColor() { m_nColor *= -1; }
 	virtual bool isInvalidPosition(char, char, int);
 	virtual bool countStone() = 0;
 	virtual bool passCheck() = 0;
@@ -33,7 +35,8 @@ public:
 	int getColor() { return m_nColor; }
 	void setColor(int _color) { m_nColor = _color; }
 
-	int getSize() { return m_nSize; }
+	int getRowSize() { return m_nRowSize; }
+	int getColSize() { return m_nColSize; }
 
 	bool getPos() { return m_bPos; }
 
@@ -46,7 +49,7 @@ public:
 
 	~CBoardGame()
 	{
-		for (int r = 0; r < m_nSize; r++) delete(dat[r]);
+		for (int r = 0; r < m_nRowSize; r++) delete(dat[r]);
 		delete(dat);
 	}
 

@@ -2,8 +2,10 @@
 #define __C_BOARD_GAME_HANDLER_H__
 #include "COmok.h"
 #include "COthello.h"
+#include "CBingo.h"
 #include "CPrintNarrow.h"
 #include "CPrintWide.h"
+#include "CPrintBingo.h"
 
 class CBoardGameHandler
 {
@@ -16,7 +18,8 @@ private:
 
 	enum {
 		Omok = 1,
-		Othello
+		Othello,
+		Bingo
 	};
 	enum {
 		WHITE = 1,
