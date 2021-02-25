@@ -50,7 +50,16 @@ public:
 		delete(dat);
 	}
 
-	const int m_nARR_EIGHT_DIR[2][8] = { {1, 1, 1, 0, 0, -1, -1, -1}, {-1, 0, 1, -1, 1, -1, 0, 1} };
+	const int m_nARR_EIGHT_DIR[8][2] = {
+		{1, -1},
+		{1, 0},
+		{1, 1},
+		{0, -1},
+		{0, 1},
+		{-1, -1},
+		{-1, 0},
+		{-1, 1},
+	};
 
 	enum {
 		DownLeft = 0,

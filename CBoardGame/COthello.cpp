@@ -22,7 +22,7 @@ bool COthello::check(int _r, int _c, int dir)
 	int cnt = 0;
 
 	for (int i = 1; i < getSize() - 1; i++) {
-		if (isBreak(_r + (i * m_nARR_EIGHT_DIR[0][dir]), _c + (i * m_nARR_EIGHT_DIR[1][dir]), dir, cnt, res)) break;
+		if (isBreak(_r + (i * m_nARR_EIGHT_DIR[dir][0]), _c + (i * m_nARR_EIGHT_DIR[dir][1]), dir, cnt, res)) break;
 	}
 	if (res == false && cnt != 0) {
 		for (int j = 0; j < cnt; j++) m_reverseStone.pop_back();

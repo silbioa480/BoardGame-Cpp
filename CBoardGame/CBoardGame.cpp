@@ -14,7 +14,7 @@ bool CBoardGame::check(int _r, int _c, int dir)
 	int cnt = 0;
 
 	for (int i = 1; i < m_nSize - 1; i++) {
-		if (isBreak(_r + (i * m_nARR_EIGHT_DIR[0][dir]), _c + (i * m_nARR_EIGHT_DIR[1][dir]), dir, cnt, res)) break;
+		if (isBreak(_r + (i * m_nARR_EIGHT_DIR[dir][0]), _c + (i * m_nARR_EIGHT_DIR[dir][1]), dir, cnt, res)) break;
 	}
 	return res;
 }
