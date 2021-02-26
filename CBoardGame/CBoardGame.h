@@ -43,7 +43,9 @@ public:
 	void setPos(bool a_bPos) { m_bPos = a_bPos; }
 
 	int getR() { return r; }
+	void SetR(int _r) { r = _r; }
 	int getC() { return c; }
+	void setC(int _c) { c = _c; }
 
 	int getWhite() { return m_nWhite; }
 	void setWhite(int a_nWhite) { m_nWhite = a_nWhite; }

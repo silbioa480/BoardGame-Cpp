@@ -158,6 +158,8 @@
     <ClInclude Include="CPrintBingo.h" />
     <ClInclude Include="CPrintBoardGame.h" />
     <ClInclude Include="CPrintNarrow.h" />
+    <ClInclude Include="CPrintOmok.h" />
+    <ClInclude Include="CPrintOthello.h" />
     <ClInclude Include="CPrintWide.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

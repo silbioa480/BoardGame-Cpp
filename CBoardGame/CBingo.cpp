@@ -2,7 +2,6 @@
 
 bool CBingo::isBreak(int _r, int _c, int dir, int& cnt, bool& res)
 {
-	if (CBoardGame::isBreak(_r, _c, dir, cnt, res)) return true;
 	if (getData(_r, _c) == -1) {
 		cnt++;
 		return false;
@@ -21,7 +20,10 @@ bool CBingo::check(int _r, int _c, int dir)
 	{
 		if (y == _r && x == _c) continue;
 		if (isBreak(y, x, dir, cntA, res)) break;
-		if (cntA == 4) m_nBingoLineA++;
+		if (cntA == 4) {
+			m_nBingoLineA++;
+			return true;
+		}
 	}
 
 	int cntB = 0;
@@ -31,7 +33,10 @@ bool CBingo::check(int _r, int _c, int dir)
 	{
 		if (y == _r && x == _c) continue;
 		if (isBreak(y, x, dir, cntB, res)) break;
-		if (cntB == 4) m_nBingoLineB++;
+		if (cntB == 4) {
+			m_nBingoLineB++;
+			return true;
+		}
 	}
 
 	return res;
@@ -44,11 +49,15 @@ void CBingo::putStone()
 bool CBingo::isInvalidPosition(char _y, char _x, int len)
 {
 	if (!CBoardGame::isInvalidPosition(_y, _x, len)) return false;
-	int num = 0;
-	const char* temp = _y + _x + "";
+	
+	int num = -1;
+	char temp[2];
+	temp[0] = _y;
+	temp[1] = _x;
+	string str(temp);
 	try 
 	{
-		num = atoi(temp);
+		num = stoi(str);
 	}
 	catch(exception e)
 	{
@@ -57,7 +66,8 @@ bool CBingo::isInvalidPosition(char _y, char _x, int len)
 	if (num > 24 || num < 0) return false;
 
 	findNumber(num);
-	canStone(getR(), getC());
+	passCheck();
+	changeColor();
 	
 	return true;
 }
@@ -69,11 +79,22 @@ bool CBingo::countStone()
 		setBingoLine(1, m_nBingoLineB);
 		return true;
 	}
+	else {
+		m_nBingoLineA = 0;
+		m_nBingoLineB = 0;
+		return false;
+	}
 }
 
 bool CBingo::passCheck()
 {
-	return false;
+	for (int i = 0; i < BINGO_ROW_SIZE; i++) {
+		for (int j = 0; j < BINGO_COL_SIZE; j++) {
+			if(getData(i, j) == -1) canStone(i, j);
+			if (m_nBingoLineA >= 5 || m_nBingoLineB >= 5) return true;
+		}
+	}
+	return true;
 }
 
 void CBingo::findNumber(int a_num)

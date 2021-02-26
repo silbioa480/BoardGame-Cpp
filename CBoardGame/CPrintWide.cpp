@@ -26,7 +26,7 @@ void CPrintWide::printLine(int si, int _r)
 
 void CPrintWide::printLineWide(int _r)
 {
-	string s = m_sLINE[1];
+	string s = m_sLINE[Vert];
 	cout << s;
 
 	int data;
@@ -48,13 +48,13 @@ void CPrintWide::printBoard()
 	system("cls");
 	printUITop();
 
-	printLine(2, 0);
+	printLine(TL, 0);
 
-	for (int m_sLINE = 1; m_sLINE < getRowSize() - 1; m_sLINE++)
+	for (int row = 1; row < getRowSize() - 1; row++)
 	{
-		printLineWide(m_sLINE - 1);
-		printLine(5, m_sLINE);
+		printLineWide(row - 1);
+		printLine(ML, row);
 	}
 	printLineWide(getRowSize() - 2);
-	printLine(8, getRowSize() - 1);
+	printLine(BL, getRowSize() - 1);
 }

@@ -5,6 +5,7 @@
 #include "CBoardGame.h"
 #include <iostream>
 #include <ctime>
+#include <string>
 
 class CBingo : public CBoardGame
 {

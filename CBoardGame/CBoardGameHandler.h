@@ -3,8 +3,8 @@
 #include "COmok.h"
 #include "COthello.h"
 #include "CBingo.h"
-#include "CPrintNarrow.h"
-#include "CPrintWide.h"
+#include "CPrintOmok.h"
+#include "CPrintOthello.h"
 #include "CPrintBingo.h"
 
 class CBoardGameHandler

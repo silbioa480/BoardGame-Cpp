@@ -14,6 +14,7 @@ bool COmok::isBreak(int _r, int _c, int dir, int& cnt, bool& res)
 bool COmok::isInvalidPosition(char _y, char _x, int len)
 {
 	if (!CBoardGame::isInvalidPosition(_y, _x, len)) return false;
+	if (getData(getR(), getC()) != 0) return false;
 	canStone(getR(), getC());
 	return true;
 }

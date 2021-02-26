@@ -9,8 +9,7 @@ void CPrintNarrow::printUITop()
 void CPrintNarrow::printUIRight(int _r)
 {
     char cRowNumber = (char)(_r < 10) ? _r + '0' : _r + 'a' - 10;
-    cout << cRowNumber;
-	cout << "\n";
+    cout << cRowNumber << "\n";
 }
 
 void CPrintNarrow::printLine(int si, int _r)
@@ -41,11 +40,11 @@ void CPrintNarrow::printBoard()
     system("cls");
     printUITop();
 
-    printLine(2, 0);
+    printLine(TL, 0);
 
-    for (int m_sLINE = 1; m_sLINE < getRowSize() - 1; m_sLINE++)
+    for (int row = 1; row < getRowSize() - 1; row++)
     {
-        printLine(5, m_sLINE);
+        printLine(ML, row);
     }
-    printLine(8, getRowSize() - 1);
+    printLine(BL, getRowSize() - 1);
 }

@@ -53,7 +53,5 @@ bool CBoardGame::isInvalidPosition(char _y, char _x, int len)
 	else if (_x >= '0' && _x <= '9') c = _x - '0';
 	else return false;
 
-	if (dat[r][c] != 0) return false;
-
 	return true;
 }

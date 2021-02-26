@@ -39,6 +39,7 @@ bool COthello::isInvalidPosition(char _y, char _x, int len)
 {
 	m_VectorPairReversePoint.clear();
 	if (!CBoardGame::isInvalidPosition(_y, _x, len)) return false;
+	if (getData(getR(), getC()) != 0) return false;
 	setPos(canStone(getR(), getC()));
 	if (getPos()) return true;
 	return false;
