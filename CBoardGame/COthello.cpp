@@ -22,7 +22,7 @@ bool COthello::check(int _r, int _c, int dir)
 	int cnt = 0;
 
 	for (int y = _r, x = _c;
-		(0 <= y && y < getRowSize()) && (0 <= x && x < getColSize());
+		(0 <= y && y < OTHELLO_SIZE) && (0 <= x && x < OTHELLO_SIZE);
 		y += m_nARR_EIGHT_DIR[dir][0], x += m_nARR_EIGHT_DIR[dir][1])
 	{
 		if (y == _r && x == _c) continue;
@@ -47,8 +47,8 @@ bool COthello::isInvalidPosition(char _y, char _x, int len)
 
 bool COthello::countStone()
 {
-	for (int i = 0; i < getRowSize(); i++) {
-		for (int j = 0; j < getColSize(); j++) {
+	for (int i = 0; i < OTHELLO_SIZE; i++) {
+		for (int j = 0; j < OTHELLO_SIZE; j++) {
 			if (getData(i, j) == 1) CBoardGame::setWhite(getWhite() + 1);
 			else if (getData(i, j) == -1) CBoardGame::setBlack(getBlack() + 1);
 		}
@@ -60,8 +60,8 @@ bool COthello::passCheck()
 {
 	int cnt = 0;
 
-	for (int i = 0; i < getRowSize(); i++) {
-		for (int j = 0; j < getColSize(); j++) {
+	for (int i = 0; i < OTHELLO_SIZE; i++) {
+		for (int j = 0; j < OTHELLO_SIZE; j++) {
 			if (getData(i, j) == 0) {
 				if (canStone(i, j)) cnt++;
 			}

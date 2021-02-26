@@ -47,4 +47,5 @@ void CPrintNarrow::printBoard()
         printLine(ML, row);
     }
     printLine(BL, getRowSize() - 1);
+    printf("\n");
 }

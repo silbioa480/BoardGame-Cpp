@@ -15,7 +15,7 @@ bool CBingo::check(int _r, int _c, int dir)
 	int cntA = 0;
 
 	for (int y = _r, x = _c;
-		(0 <= y && y < getRowSize()) && (0 <= x && x < 5);
+		(0 <= y && y < BINGO_ROW_SIZE) && (0 <= x && x < 5);
 		y += m_nARR_EIGHT_DIR[dir][0], x += m_nARR_EIGHT_DIR[dir][1])
 	{
 		if (y == _r && x == _c) continue;
@@ -28,7 +28,7 @@ bool CBingo::check(int _r, int _c, int dir)
 
 	int cntB = 0;
 	for (int y = _r, x = _c;
-		(0 <= y && y < getRowSize()) && (5 <= x && x < 10);
+		(0 <= y && y < BINGO_ROW_SIZE) && (5 <= x && x < 10);
 		y += m_nARR_EIGHT_DIR[dir][0], x += m_nARR_EIGHT_DIR[dir][1])
 	{
 		if (y == _r && x == _c) continue;
@@ -85,8 +85,8 @@ bool CBingo::countStone()
 bool CBingo::findNumber(int a_num)
 {
 	int cnt = 0;
-	for (int i = 0; i < getRowSize(); i++) {
-		for (int j = 0; j < getColSize(); j++) {
+	for (int i = 0; i < BINGO_ROW_SIZE; i++) {
+		for (int j = 0; j < BINGO_COL_SIZE; j++) {
 			if (getData(i, j) == a_num) {
 				setData(i, j, -1);
 				cnt++;
@@ -122,7 +122,7 @@ void CBingo::setRandomNumberBoard(int _startCol, int _endCol)
 	resetRandomNumber();
 	makeRandomNumber();
 	int cnt = 0;
-	for (int i = 0; i < getRowSize(); i++) {
+	for (int i = 0; i < BINGO_ROW_SIZE; i++) {
 		for (int j = _startCol; j < _endCol; j++) {
 			setData(i, j, m_nArrRandmNumber[cnt]);
 			cnt++;

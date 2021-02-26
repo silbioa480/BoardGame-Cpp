@@ -57,4 +57,5 @@ void CPrintWide::printBoard()
 	}
 	printLineWide(getRowSize() - 2);
 	printLine(BL, getRowSize() - 1);
+	printf("\n");
 }
