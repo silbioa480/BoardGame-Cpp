@@ -8,7 +8,7 @@ using namespace std;
 class COthello : public CBoardGame
 {
 private:
-	vector<pair<int, int>> m_reverseStone;
+	vector<pair<int, int>> m_VectorPairReversePoint;
 
 public:
 	COthello(int a_nRowSize, int a_nColSize) : CBoardGame(a_nRowSize, a_nColSize) 
@@ -23,7 +23,7 @@ public:
 	virtual bool check(int, int, int);
 	virtual void putStone() {
 		CBoardGame::putStone();
-		for (auto p : m_reverseStone) setData(p.first, p.second, (getColor() * -1));
+		for (auto p : m_VectorPairReversePoint) setData(p.first, p.second, (getColor() * -1));
 	}
 	virtual bool isInvalidPosition(char, char, int);
 	virtual bool countStone();

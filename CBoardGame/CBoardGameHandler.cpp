@@ -36,8 +36,7 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 {
 	int nPass = 0;
 
-	printf("\n%s 차례입니다.\n", BG->getColor() == WHITE ? PG->m_sPlayer[0] : PG->m_sPlayer[1]);
-
+	cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " 차례입니다.\n";
 	while (true) {
 		if (BG->passCheck() == false) {
 			nPass++;
@@ -45,9 +44,9 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 				a_bWinCheck = BG->countStone();
 				break;
 			}
-			printf("%s돌을 둘 자리가 없어 패스되었습니다.\n", ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
+			cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "돌을 둘 자리가 없어 패스되었습니다.\n\n";
 			BG->setColor(BG->getColor() * -1);
-			printf("\n%s 차례입니다.\n", ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
+			cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " 차례입니다.\n";
 			continue;
 		}
 		printf("Input Position: ");
@@ -64,13 +63,13 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 void CBoardGameHandler::gameResult()
 {
 	if (m_nGame == Othello) {
-		printf("%s: %d  %s: %d\n", PG->m_sPlayer[0], BG->getWhite(), PG->m_sPlayer[1], BG->getBlack());
+		cout << PG->m_sPlayer[0] << ": " << BG->getWhite() << "  " << PG->m_sPlayer[1] << ": " << BG->getBlack() << "\n";
 		if (BG->getWhite() == BG->getBlack()) printf("무승부");
-		else printf("%s이 승리하였습니다.", ((BG->getWhite() > BG->getBlack()) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
+		else cout << ((BG->getWhite() > BG->getBlack()) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "이 승리했습니다.";
 	}
 	else if (m_nGame == Bingo) {
 		if (BG->getBingoLine(0) == BG->getBingoLine(1)) printf("무승부");
-		else printf("%s가 승리하였습니다.", ((BG->getBingoLine(0) > BG->getBingoLine(1)) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
+		else cout << ((BG->getWhite() > BG->getBlack()) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "이 승리했습니다.";
 	}
-	else printf("%s이 승리하였습니다.", ((BG->getColor() == BLACK) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]));
+	else cout << ((BG->getColor() == BLACK) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "이 승리했습니다.";
 }

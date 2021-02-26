@@ -65,22 +65,22 @@ public:
 		{1, -1},
 		{1, 0},
 		{1, 1},
-		{0, -1},
 		{0, 1},
-		{-1, -1},
-		{-1, 0},
 		{-1, 1},
+		{-1, 0},
+		{-1, -1},
+		{0, -1}
 	};
 
 	enum {
 		DownLeft = 0,
 		Down,
 		DownRight,
-		Left,
 		Right,
-		UpLeft,
+		UpRight,
 		Up,
-		UpRight
+		UpLeft,
+		Left
 	};
 };
 #endif

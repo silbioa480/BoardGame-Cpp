@@ -5,12 +5,12 @@ bool COthello::isBreak(int _r, int _c, int dir, int& cnt, bool& res)
 	if (CBoardGame::isBreak(_r, _c, dir, cnt, res)) return true;
 	else if (getData(_r, _c) == getColor())
 	{
-		if (m_reverseStone.empty() == false) res = true;
+		if (m_VectorPairReversePoint.empty() == false) res = true;
 		return true;
 	}
 	else if (getData(_r, _c) == getColor() * -1)
 	{
-		m_reverseStone.emplace_back(make_pair(_r, _c));
+		m_VectorPairReversePoint.emplace_back(make_pair(_r, _c));
 		cnt++;
 		return false;
 	}
@@ -29,7 +29,7 @@ bool COthello::check(int _r, int _c, int dir)
 		if (isBreak(y, x, dir, cnt, res)) break;
 	}
 	if (res == false && cnt != 0) {
-		for (int j = 0; j < cnt; j++) m_reverseStone.pop_back();
+		for (int j = 0; j < cnt; j++) m_VectorPairReversePoint.pop_back();
 	}
 
 	return res;
@@ -37,9 +37,10 @@ bool COthello::check(int _r, int _c, int dir)
 
 bool COthello::isInvalidPosition(char _y, char _x, int len)
 {
-	if (CBoardGame::isInvalidPosition(_y, _x, len) == true && getPos() == true) return true;
-	m_reverseStone.clear();
+	m_VectorPairReversePoint.clear();
+	if (!CBoardGame::isInvalidPosition(_y, _x, len)) return false;
 	setPos(canStone(getR(), getC()));
+	if (getPos()) return true;
 	return false;
 }
 
