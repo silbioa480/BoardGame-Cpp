@@ -1,2 +1,2 @@
 # CPP-BoardGame
-CPP Language BoardGame(Omok, Othello)
+CPP Language BoardGame(Omok, Othello, Bingo)
