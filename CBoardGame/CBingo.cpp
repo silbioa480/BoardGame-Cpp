@@ -65,8 +65,8 @@ bool CBingo::isInvalidPosition(char _y, char _x, int len)
 	}
 	if (num > 24 || num < 0) return false;
 
-	findNumber(num);
-	passCheck();
+	if (!findNumber(num)) return false;
+	m_bBingo = lineCheck();
 	changeColor();
 	
 	return true;
@@ -74,30 +74,15 @@ bool CBingo::isInvalidPosition(char _y, char _x, int len)
 
 bool CBingo::countStone()
 {
-	if (m_nBingoLineA >= 5 || m_nBingoLineB >= 5) {
+	if (m_bBingo) {
 		setBingoLine(0, m_nBingoLineA);
 		setBingoLine(1, m_nBingoLineB);
 		return true;
 	}
-	else {
-		m_nBingoLineA = 0;
-		m_nBingoLineB = 0;
-		return false;
-	}
+	return false;
 }
 
-bool CBingo::passCheck()
-{
-	for (int i = 0; i < BINGO_ROW_SIZE; i++) {
-		for (int j = 0; j < BINGO_COL_SIZE; j++) {
-			if(getData(i, j) == -1) canStone(i, j);
-			if (m_nBingoLineA >= 5 || m_nBingoLineB >= 5) return true;
-		}
-	}
-	return true;
-}
-
-void CBingo::findNumber(int a_num)
+bool CBingo::findNumber(int a_num)
 {
 	int cnt = 0;
 	for (int i = 0; i < getRowSize(); i++) {
@@ -105,10 +90,11 @@ void CBingo::findNumber(int a_num)
 			if (getData(i, j) == a_num) {
 				setData(i, j, -1);
 				cnt++;
-				if (cnt == 2) return;
+				if (cnt == 2) return true;
 			}
 		}
 	}
+	return false;
 }
 
 void CBingo::makeRandomNumber()
@@ -117,7 +103,7 @@ void CBingo::makeRandomNumber()
 
 	for (int i = 0; i < 25; i++) {
 		m_nArrRandmNumber[i] = rand() % 25;
-		for (int j = 0; j < i - 1; j++) {
+		for (int j = 0; j < i; j++) {
 			if (m_nArrRandmNumber[i] == m_nArrRandmNumber[j]) {
 				i--;
 				break;
@@ -128,7 +114,7 @@ void CBingo::makeRandomNumber()
 
 void CBingo::resetRandomNumber()
 {
-	for (int i = 0; i < 25; i++) m_nArrRandmNumber[i] = -1;
+	for (int i = 0; i < 25; i++) m_nArrRandmNumber[i] = -2;
 }
 
 void CBingo::setRandomNumberBoard(int _startCol, int _endCol)
@@ -142,4 +128,17 @@ void CBingo::setRandomNumberBoard(int _startCol, int _endCol)
 			cnt++;
 		}
 	}
+}
+
+bool CBingo::lineCheck()
+{
+	for (int i = 0; i < BINGO_ROW_SIZE; i++) {
+		for (int j = 0; j < BINGO_COL_SIZE; j++) {
+			if (getData(i, j) == -1) canStone(i, j);
+			if (m_nBingoLineA >= 10 || m_nBingoLineB >= 10) return true;
+		}
+	}
+	m_nBingoLineA = 0;
+	m_nBingoLineB = 0;
+	return false;
 }

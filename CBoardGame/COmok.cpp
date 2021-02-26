@@ -29,8 +29,3 @@ bool COmok::countStone()
 
 	return false;
 }
-
-bool COmok::passCheck()
-{
-	return true;
-}

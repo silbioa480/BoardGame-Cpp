@@ -13,10 +13,7 @@ public:
 
 	virtual bool isBreak(int, int, int, int&, bool&);
 	virtual bool check(int _r, int _c, int dir) { return CBoardGame::check(_r, _c, dir); }
-	virtual void putStone() { CBoardGame::putStone(); };
 	virtual bool isInvalidPosition(char, char, int);
 	virtual bool countStone();
-	virtual bool passCheck();
-
 };
 #endif

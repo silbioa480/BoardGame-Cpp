@@ -37,7 +37,7 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 {
 	int nPass = 0;
 
-	cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " 차례입니다.\n";
+	cout << "\n" << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " 차례입니다.\n";
 	while (true) {
 		if (BG->passCheck() == false) {
 			nPass++;
@@ -47,7 +47,7 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 			}
 			cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "돌을 둘 자리가 없어 패스되었습니다.\n\n";
 			BG->setColor(BG->getColor() * -1);
-			cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " 차례입니다.\n";
+			cout << "\n" << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " 차례입니다.\n";
 			continue;
 		}
 		printf("Input Position: ");

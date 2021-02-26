@@ -28,7 +28,7 @@ public:
 	void changeColor() { m_nColor *= -1; }
 	virtual bool isInvalidPosition(char, char, int);
 	virtual bool countStone() = 0;
-	virtual bool passCheck() = 0;
+	virtual bool passCheck() { return true; }
 
 	int getData(int _r, int _c) { return dat[_r][_c]; }
 	void setData(int _r, int _c, int _color) { dat[_r][_c] = _color; }

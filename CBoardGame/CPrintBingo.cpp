@@ -34,7 +34,7 @@ void CPrintBingo::printLineWide(int _r)
 	for (int _c = 0; _c < (getColSize() / 2) - 1; _c++)
 	{
 		data = getData(_r, _c);
-		if (data == -1) cout << m_sSTONE[0];
+		if (data == -1) cout << m_sSTONE[2];
 		else printf("%02d", getData(_r, _c));
 		cout << s;
 	}
@@ -43,7 +43,7 @@ void CPrintBingo::printLineWide(int _r)
 	for (int _c = 5; _c < getColSize() - 2; _c++)
 	{
 		data = getData(_r, _c);
-		if (data == -1) cout << m_sSTONE[0];
+		if (data == -1) cout << m_sSTONE[2];
 		else printf("%02d", getData(_r, _c));
 		cout << s;
 	}
