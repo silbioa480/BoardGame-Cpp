@@ -12,8 +12,8 @@ bool CBingo::isBreak(int _r, int _c, int dir, int& cnt, bool& res)
 bool CBingo::check(int _r, int _c, int dir)
 {
 	bool res = false;
-	int cntA = 0;
 
+	int cntA = 0;
 	for (int y = _r, x = _c;
 		(0 <= y && y < BINGO_ROW_SIZE) && (0 <= x && x < 5);
 		y += m_nARR_EIGHT_DIR[dir][0], x += m_nARR_EIGHT_DIR[dir][1])

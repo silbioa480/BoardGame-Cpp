@@ -8,7 +8,7 @@ void CPrintWide::printUITop()
 
 void CPrintWide::printUIRight(int _r)
 {
-	cout << "\n";
+	cout << _r << "\n";
 }
 
 void CPrintWide::printLine(int si, int _r)
@@ -21,7 +21,7 @@ void CPrintWide::printLine(int si, int _r)
 
 	s = m_sLINE[0] + m_sLINE[si + 2];
 	cout << getLine(s, _r, getColSize() - 1);
-	printUIRight(_r);
+	cout << "\n";
 }
 
 void CPrintWide::printLineWide(int _r)
@@ -35,7 +35,7 @@ void CPrintWide::printLineWide(int _r)
 		data = getData(_r, _c);
 		cout << ((data != 0) ? m_sSTONE[data + 1] : "  ") << s;
 	}
-	cout << _r << "\n";
+	printUIRight(_r);
 }
 
 string CPrintWide::getLine(string _line, int _r, int _c)

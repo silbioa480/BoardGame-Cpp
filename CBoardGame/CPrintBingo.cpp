@@ -20,7 +20,7 @@ void CPrintBingo::printLine(int si, int _r)
 		if (t == 0) printf(" ");
 		t++;
 	}
-	printUIRight(_r);
+	cout << "\n";
 }
 
 void CPrintBingo::printLineWide(int _r)
