@@ -2,6 +2,7 @@
 
 CPrintBoardGame* CBoardGameHandler::selectGame()
 {
+	printf("보드판이 제대로 출력되지 않는다면 콘솔창 제목줄을 우클릭 한 뒤\n속성 - 옵션 탭의 '레거시 콘솔 사용'을 체크한 뒤 다시 실행해주세요.\n\n");
 	while (true) {
 		printf("select game : 1) omok, 2) othello 3) bingo\n");
 		scanf_s("%d", &m_nGame);
