@@ -2,33 +2,27 @@
 
 CPrintBoardGame* CBoardGameHandler::selectGame()
 {
-	printf("º¸µåÆÇÀÌ Á¦´ë·Î Ãâ·ÂµÇÁö ¾Ê´Â´Ù¸é ÄÜ¼ÖÃ¢ Á¦¸ñÁÙÀ» ¿ìÅ¬¸¯ ÇÑ µÚ\n¼Ó¼º - ¿É¼Ç ÅÇÀÇ '·¹°Å½Ã ÄÜ¼Ö »ç¿ë'À» Ã¼Å©ÇÑ µÚ ´Ù½Ã ½ÇÇàÇØÁÖ¼¼¿ä.\n\n");
+	printf("ë³´ë“œíŒì´ ì œëŒ€ë¡œ ì¶œë ¥ë˜ì§€ ì•ŠëŠ”ë‹¤ë©´ ì½˜ì†”ì°½ ì œëª©ì¤„ì„ ìš°í´ë¦­ í•œ ë’¤\nì†ì„± - ì˜µì…˜ íƒ­ì˜ 'ë ˆê±°ì‹œ ì½˜ì†” ì‚¬ìš©'ì„ ì²´í¬í•œ ë’¤ ë‹¤ì‹œ ì‹¤í–‰í•´ì£¼ì„¸ìš”.\n\n");
 	while (true) {
 		printf("select game : 1) omok, 2) othello 3) bingo\n");
 		scanf_s("%d", &m_nGame);
 
 		if (m_nGame == Omok) {
-			COmok* OM = new COmok(OMOK_SIZE, OMOK_SIZE);
-			BG = OM;
-			CPrintOmok* PN = new CPrintOmok(BG->getBoard(), BG->getRowSize(), BG->getColSize());
-			PG = PN;
+			BG = new COmok(OMOK_SIZE, OMOK_SIZE);
+			PG = new CPrintOmok(BG->getBoard(), BG->getRowSize(), BG->getColSize());
 			break;
 		}
 		else if (m_nGame == Othello) {
-			COthello* OTH = new COthello(OTHELLO_SIZE, OTHELLO_SIZE);
-			BG = OTH;
-			CPrintOthello* PW = new CPrintOthello(BG->getBoard(), BG->getRowSize(), BG->getColSize());
-			PG = PW;
+			BG = new COthello(OTHELLO_SIZE, OTHELLO_SIZE);
+			PG = new CPrintOthello(BG->getBoard(), BG->getRowSize(), BG->getColSize());
 			break;
 		}
 		else if (m_nGame == Bingo) {
-			CBingo* BINGO = new CBingo(BINGO_ROW_SIZE, BINGO_COL_SIZE);
-			BG = BINGO;
-			CPrintBingo* PBINGO = new CPrintBingo(BG->getBoard(), BG->getRowSize(), BG->getColSize());
-			PG = PBINGO;
+			BG = new CBingo(BINGO_ROW_SIZE, BINGO_COL_SIZE);
+			PG = new CPrintBingo(BG->getBoard(), BG->getRowSize(), BG->getColSize());
 			break;
 		}
-		else printf("Àß¸øµÈ °ªÀÔ´Ï´Ù.\n\n");
+		else printf("ì˜ëª»ëœ ê°’ì…ë‹ˆë‹¤.\n\n");
 	}
 
 	return PG;
@@ -38,7 +32,7 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 {
 	int nPass = 0;
 
-	cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " Â÷·ÊÀÔ´Ï´Ù.\n";
+	cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " ì°¨ë¡€ì…ë‹ˆë‹¤.\n";
 	while (true) {
 		if (BG->passCheck() == false) {
 			nPass++;
@@ -46,9 +40,9 @@ void CBoardGameHandler::gameProgress(bool& a_bWinCheck)
 				a_bWinCheck = BG->countStone();
 				break;
 			}
-			cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "µ¹À» µÑ ÀÚ¸®°¡ ¾ø¾î ÆĞ½ºµÇ¾ú½À´Ï´Ù.\n\n";
+			cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "ëŒì„ ë‘˜ ìë¦¬ê°€ ì—†ì–´ íŒ¨ìŠ¤ë˜ì—ˆìŠµë‹ˆë‹¤.\n\n";
 			BG->setColor(BG->getColor() * -1);
-			cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " Â÷·ÊÀÔ´Ï´Ù.\n";
+			cout << ((BG->getColor() == WHITE) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << " ì°¨ë¡€ì…ë‹ˆë‹¤.\n";
 			continue;
 		}
 		printf("Input Position: ");
@@ -66,12 +60,12 @@ void CBoardGameHandler::gameResult()
 {
 	if (m_nGame == Othello) {
 		cout << PG->m_sPlayer[0] << ": " << BG->getWhite() << "  " << PG->m_sPlayer[1] << ": " << BG->getBlack() << "\n";
-		if (BG->getWhite() == BG->getBlack()) printf("¹«½ÂºÎ");
-		else cout << ((BG->getWhite() > BG->getBlack()) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "ÀÌ ½Â¸®Çß½À´Ï´Ù.";
+		if (BG->getWhite() == BG->getBlack()) printf("ë¬´ìŠ¹ë¶€");
+		else cout << ((BG->getWhite() > BG->getBlack()) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "ì´ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤.";
 	}
 	else if (m_nGame == Bingo) {
-		if (BG->getBingoLine(0) == BG->getBingoLine(1)) printf("¹«½ÂºÎ");
-		else cout << ((BG->getBingoLine(0) > BG->getBingoLine(1)) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "ÀÌ ½Â¸®Çß½À´Ï´Ù.";
+		if (BG->getBingoLine(0) == BG->getBingoLine(1)) printf("ë¬´ìŠ¹ë¶€");
+		else cout << ((BG->getBingoLine(0) > BG->getBingoLine(1)) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "ì´ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤.";
 	}
-	else cout << ((BG->getColor() == BLACK) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "ÀÌ ½Â¸®Çß½À´Ï´Ù.";
+	else cout << ((BG->getColor() == BLACK) ? PG->m_sPlayer[0] : PG->m_sPlayer[1]) << "ì´ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤.";
 }
